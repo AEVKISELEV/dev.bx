@@ -1,11 +1,11 @@
 <?php
 
-function CheckInputAge($age):bool
+function checkInputAge($age):bool
 {
 	return ($age>=0) && ($age<120) && (is_numeric($age));
 }
 
-function ResultSortAge(int $age, array $movies):void
+function resultSortAge(int $age, array $movies):void
 {
 	$number = 0;
 	foreach ($movies as $movie)

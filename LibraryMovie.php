@@ -6,9 +6,9 @@ require "movies.php";
 echo "Welcome to movie list!\n";
 $age = readline("Enter age: ");
 
-if(CheckInputAge($age))
+if(checkInputAge($age))
 	{
-		ResultSortAge((int)$age, $movies);
+		resultSortAge((int)$age, $movies);
 	}
 else
 	{
