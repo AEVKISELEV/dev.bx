@@ -1,0 +1,104 @@
+.content{
+    flex: 1;
+    overflow: auto;
+}
+.wrapper_movie{
+    display: flex;
+    flex-wrap:wrap;
+    align-content:space-around;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+.movie_card{
+    position: relative;
+    width: 370px;
+    height: 700px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.movie_card_active{
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+}
+.movie_card:hover .movie_card_active{
+    display: block;
+    transition: 2s;
+}
+.movie_img{
+    width:370px;
+    height:429px;
+    border-radius: 20px 20px 0 0;
+}
+.movie_text{
+    height: 210px;
+    padding: 20px 24px;
+}
+.movie_title{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+.movie_subtitle{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999999;
+}
+.movie_hr{
+    margin: 20px 0;
+    background: #F2F2F2;
+    height: 2px;
+    width: 330px;
+}
+.movie_descr{
+    font-family: 'Open Sans', sans-serif;
+    color:#333333;
+    font-size: 14px;
+    font-weight: 400;
+}
+.movie_wrapper{
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    width: 328px;
+}
+.movie_data{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.movie_time{
+    display: flex;
+    align-items: center;
+}
+.movie_time img{
+    width: 18px;
+    height: 18px;
+    padding-right: 3px;
+}
+.time_descr{
+    display: inline;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: #CCCCCC;
+}
+.movie_genre{
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    color: #CCCCCC;
+    text-transform: uppercase;
+}

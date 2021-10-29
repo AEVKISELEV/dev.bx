@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('/css/_button.css');
+@import url('/css/_menu.css');
+@import url('/css/_forms.css');
+@import url('/css/_list-film.css');
+
+
+.wrapper{
+    overflow: hidden;
+    display: flex;
+    height: 100vh;
+}
+.wrapper header{
+    display: block;
+    width: 25vw;
+    background: #383838;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #CCCCCC;
+}
+.header{
+    display: block;
+    height: 82px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header_wapper{
+    display: flex;
+    padding: 0 2vw;
+    justify-content: space-between;
+    align-items: center;
+    height: 82px;
+}
+
+h1{
+    display: block;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 96px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #43B0ED;
+    margin-top: 5vh;
+}
+
+h1:hover{
+    color: #ed4343;
+    -webkit-transform: scale(1.1);   /* анимация в стиле NETFLIX */
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1.3s;
+}
+
+
+
