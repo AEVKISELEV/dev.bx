@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('/css/_button.css');
-@import url('/css/_menu.css');
-@import url('/css/_forms.css');
-@import url('/css/_list-film.css');
+@import url('_button.css');
+@import url('_menu.css');
+@import url('_forms.css');
+@import url('_list-film.css');
+@import url('_header.css');
 
 
 .wrapper{
@@ -22,20 +23,7 @@
     flex: 1;
     background: #CCCCCC;
 }
-.header{
-    display: block;
-    height: 82px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-}
 
-.header_wapper{
-    display: flex;
-    padding: 0 2vw;
-    justify-content: space-between;
-    align-items: center;
-    height: 82px;
-}
 
 h1{
     display: block;
