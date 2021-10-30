@@ -1,4 +1,5 @@
 .form_search button{
+    cursor: pointer;
     border:none;
     width: 80px;
     height: 40px;
@@ -20,6 +21,7 @@
     transition: 0.7s;
 }
 .header_button{
+    cursor: pointer;
     width: 160px;
     height: 40px;
     background: #4EE7B0;
@@ -40,6 +42,7 @@
     transition: 0.7s;
 }
 .active_button{
+    cursor: pointer;
     display: block;
     margin: 300px auto;
     width: 220px;

@@ -55,7 +55,7 @@
     color: #999999;
 }
 .movie_hr{
-    margin: 20px 0;
+    margin: 15px 0;
     background: #F2F2F2;
     height: 2px;
     width: 330px;
@@ -64,12 +64,13 @@
     font-family: 'Open Sans', sans-serif;
     color:#333333;
     font-size: 14px;
+    line-height: 20px;
     font-weight: 400;
 }
 .movie_wrapper{
     display: block;
     position: absolute;
-    bottom: 20px;
+    bottom: 19px;
     width: 328px;
 }
 .movie_data{

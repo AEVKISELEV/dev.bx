@@ -25,7 +25,7 @@
 }
 
 
-h1{
+.logo_h1{
     display: block;
     font-family: 'Bebas Neue', cursive;
     font-size: 96px;
@@ -36,7 +36,7 @@ h1{
     margin-top: 5vh;
 }
 
-h1:hover{
+.logo_h1:hover{
     color: #ed4343;
     -webkit-transform: scale(1.1);   /* анимация в стиле NETFLIX */
     -ms-transform: scale(1.1);
