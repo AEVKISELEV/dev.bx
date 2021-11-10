@@ -4,7 +4,7 @@
 
 <div class="movie_card">
 			<div class="movie_card_active">
-				<a style="text-decoration: none;" href="<?= "index.php"."?about={$movie['id']}" ?>"><button class="active_button">подробнее</button></a>
+				<a style="text-decoration: none;" href="<?= "detailFilm.php"."?about={$movie['id']}" ?>"><button class="active_button">подробнее</button></a>
 			</div>
 			<img src="resources/img/<?= $movie['id']?>.jpg" alt="movie" class="movie_img">
 			<div class="movie_text">

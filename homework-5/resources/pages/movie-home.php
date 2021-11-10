@@ -12,9 +12,6 @@
 					<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]); ?>
 				<?php endif; ?>
 			<?php endif; ?>
-			<?php if (($_GET !== []) && ((int)($_GET['about']) === $movie['id'])): ?>
-				<?= renderTemplate("./resources/blocks/_about-movie.php", ['movie' => $movie]); ?>
-			<?php endif; ?>
 		<?php endforeach;?>
 		<?php if (($_GET['input']==='true') || ($_GET['important']==='true')): ?>
 			<?= renderTemplate("./resources/blocks/_error-block.php"); ?>

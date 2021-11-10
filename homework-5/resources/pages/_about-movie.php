@@ -1,6 +1,9 @@
 <?php
-/** @var array $movie */
+/** @var array $movies */
 ?>
+<div class="wrapper_detailmovie">
+<?php foreach ($movies as $movie): ?>
+<?php if (($_GET !== []) && ((int)($_GET['about']) === $movie['id'])): ?>
 <div class="about_film_card">
 	<div class="about-film-title"><?= $movie['title'] ?></div>
 	<div class="wrapper-about-film-subtitle">
@@ -20,7 +23,7 @@
 				<?php for($j=1;$j<=(10-round($movie['rating'], 0, PHP_ROUND_HALF_DOWN));$j++): ?>
 				<?= '<div style="background: #F2F2F2;" class="rating-rectangle"></div>' ?>
 				<?php endfor; ?>
-				<div class="rating-ellipse"><?= $movie['rating'] ?></div>
+				<div class="rating-ellipse"><?= (float)$movie['rating'] ?></div>
 			</div>
 			<div class="about-film-small-descr-title">О фильме</div>
 			<div class="wrapper-about-film-small-descr">
@@ -42,4 +45,7 @@
 	<div class="about-film-heart">
 		<img src="./resources/img/icon-with-like.svg" alt="heart">
 	</div>
+</div>
+<?php endif; ?>
+<?php endforeach;?>
 </div>

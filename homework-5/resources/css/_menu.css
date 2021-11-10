@@ -1,7 +1,11 @@
+header{
+	overflow: auto;
+}
 .menu{
     display: block;
     margin: 0 30px;
-    margin-top: 3vh;
+	margin-bottom: 20px;
+    margin-top: 5vh;
 }
 .menu-item{
     display: block;
@@ -18,10 +22,10 @@
 
 .menu-item a{
     display: flex;
-    height: 40px;
+    height: 60px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 18px;
     align-items: center;
     text-transform: uppercase;
     text-decoration: none;
