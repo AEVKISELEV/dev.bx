@@ -75,11 +75,12 @@
 }
 .rating-rectangle{
 	display: block;
-	background: #E78818;
+	background: #F2F2F2;
 	width: 18px;
 	height: 18px;
 	margin-right: 5px;
 }
+
 
 .rating-ellipse{
 	display: flex;

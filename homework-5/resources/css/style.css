@@ -44,13 +44,25 @@
     transition: 1.3s;
 }
 .error{
-	margin-top: 500px;
 	display: block;
 	font-size: 32px;
 	font-weight: 700;
 	font-family: 'Open Sans', sans-serif;
 	color: #113f64;
 	text-transform: uppercase;
+	margin-right: 10px;
+}
+.wrapper-error{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+.error-smile{
+	display: block;
+	width: 32px;
+	height: 32px;
 }
 
 

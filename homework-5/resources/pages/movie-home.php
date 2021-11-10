@@ -1,19 +1,25 @@
 <?php
- /** @var array $movies */
+/** @var array $movies */
 /** @var array $genres */
 ?>
-	<div class="wrapper_movie">
-		<?php foreach ($movies as $movie): ?>
-		<?php if ((in_array($genres[$_GET['genres']], $movie['genres'])) || ($_GET===[])): ?>
-		<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]); ?>
+<div class="wrapper_movie">
+
+<?php $i = false; ?>
+
+	<?php foreach ($movies as $movie): ?>
+
+		<?php if (isset($_GET['genres']) && (in_array($genres[$_GET['genres']], $movie['genres'])) || ($_GET === [])): ?>
+			<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]); ?>
 		<?php endif; ?>
-			<?php if (($_GET !== []) && ($_GET['s'] !== NULL)): ?>
-				<?php if (is_string(mb_stristr($movie['title'], $_GET['s'])) || is_string(mb_stristr($movie['original-title'], $_GET['s']))): ?>
-					<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]); ?>
-				<?php endif; ?>
-			<?php endif; ?>
-		<?php endforeach;?>
-		<?php if (($_GET['input']==='true') || ($_GET['important']==='true')): ?>
-			<?= renderTemplate("./resources/blocks/_error-block.php"); ?>
+
+		<?php if (isset($_GET['s']) && ($_GET['s'] !== '') && searchMovies($movie['title'],$movie['original-title'], $_GET['s'])): ?>
+				<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]); ?>
+				<?php $i = true; ?>
 		<?php endif; ?>
-	</div>
+
+	<?php endforeach; ?>
+
+	<?php if (checkSearch($_GET['s']) && ($i === false)): ?>
+	<?= renderTemplate("./resources/pages/error-search.php"); ?>
+	<?php endif; ?>
+</div>
