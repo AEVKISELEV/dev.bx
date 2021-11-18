@@ -34,14 +34,15 @@
     text-transform: uppercase;
     color: #43B0ED;
     margin-top: 5vh;
+	transform: scale(1.01);
+	transition: 1.3s;
 }
 
 .logo_h1:hover{
     color: #ed4343;
-    -webkit-transform: scale(1.1);   /* анимация в стиле NETFLIX */
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-    transition: 1.3s;
+    -webkit-transform: scale(1.1, 1.1);   /* анимация в стиле NETFLIX */
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
 }
 .error{
 	display: block;

@@ -153,4 +153,39 @@
 	right: 0;
 	top: 55px;
 	bottom: 0;
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: 0.3s;
+	background: url("../img/icon.svg");
+}
+.about-film-heart:hover{
+	 transform: scale(1.2,1.2);
+}
+.about-film-heart-active{
+	background: url("../img/icon-with-like.svg");
+}
+.wrapper_detailmovie{
+	padding-bottom: 40px;
+}
+.notify{
+	display: none;
+}
+.notify-active{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	left: 70%;
+	right: 0;
+	top: 90%;
+	bottom: 0;
+	width: 300px;
+	height: 40px;
+	background-color: #43B0ED;
+	color: aliceblue;
+	border-radius: 20px;
+	text-align: center;
 }

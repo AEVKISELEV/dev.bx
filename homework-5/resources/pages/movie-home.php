@@ -19,7 +19,9 @@
 
 	<?php endforeach; ?>
 
-	<?php if (checkSearch($_GET['s']) && ($i === false)): ?>
+	<?php if (isset($_GET['s']) && ($_GET['s'] !== '') && ($i === false)): ?>
 	<?= renderTemplate("./resources/pages/error-search.php"); ?>
 	<?php endif; ?>
 </div>
+
+

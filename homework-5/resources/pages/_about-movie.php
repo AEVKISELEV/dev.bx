@@ -42,12 +42,35 @@
 						<div class="about-film-descr"><?= $movie['description'] ?></div>
 					</div>
 				</div>
-				<div class="about-film-heart">
-					<img src="./resources/img/icon-with-like.svg" alt="heart">
+				<div class="about-film-heart" id="like">
+
 				</div>
+				<div class="notify" id="notify">"<?= $movie['title'] ?>" добавлен в избранное </div>
 			</div>
 		<?php
 		endif; ?>
 	<?php
 	endforeach; ?>
 </div>
+<script>
+	var likeNode = document.getElementById('like');
+	var notifyNode = document.getElementById('notify');
+
+	likeNode.addEventListener('click', function()
+	{
+
+		if(!likeNode.classList.contains('about-film-heart-active')){
+			likeNode.classList.add('about-film-heart-active');
+			notifyNode.classList.add('notify-active');
+		}
+		else{
+			likeNode.classList.remove('about-film-heart-active');
+		}
+
+
+		setTimeout(function()
+		{
+			notifyNode.classList.remove('notify-active');
+		}, 2000)
+	});
+</script>
