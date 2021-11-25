@@ -4,6 +4,7 @@ export class Item
 	deleteButtonHandler;
 	editButtonHandler;
 	saveButtonHandler;
+	clickEdit = false;
 
 	constructor({title, deleteButtonHandler, editButtonHandler, saveButtonHandler})
 	{
@@ -29,13 +30,25 @@ export class Item
 
 	render()
 	{
+		let title;
 		const container = document.createElement('div');
 		container.classList.add('item-container');
-		const title = document.createElement('div');
-		title.classList.add('item-title');
-		title.innerText = this.title;
-		container.append(title);
 
+		if(this.clickEdit)
+		{
+			title = document.createElement('input');
+			title.classList.add('item-title-input');
+			title.value = this.title;
+		}
+		else
+		{
+			title = document.createElement('div');
+			title.classList.add('item-title');
+			title.innerText = this.title;
+		}
+
+
+		container.append(title);
 		const buttonsContainer = document.createElement('div');
 		const deleteButton = document.createElement('button');
 		deleteButton.innerText = 'Delete';
@@ -44,13 +57,13 @@ export class Item
 		const saveButton = document.createElement('button');
 		saveButton.innerText = 'Save';
 
-		buttonsContainer.append(saveButton);
-		buttonsContainer.append(editButton);
-		buttonsContainer.append(deleteButton);
-
 		deleteButton.addEventListener('click', this.handleDeleteButtonClick.bind(this));
 		editButton.addEventListener('click', this.handleEditButtonClick.bind(this));
 		saveButton.addEventListener('click', this.handleSaveButtonClick.bind(this));
+
+		buttonsContainer.append(saveButton);
+		buttonsContainer.append(editButton);
+		buttonsContainer.append(deleteButton);
 
 		container.append(buttonsContainer);
 
@@ -66,6 +79,7 @@ export class Item
 	}
 	handleEditButtonClick()
 	{
+		this.clickEdit = true;
 		if (this.editButtonHandler)
 		{
 			this.editButtonHandler(this);
@@ -73,10 +87,16 @@ export class Item
 	}
 	handleSaveButtonClick()
 	{
+		this.clickEdit = false;
 		if (this.deleteSaveHandler)
 		{
 			this.deleteSaveHandler(this);
 		}
 	}
+	setIsEdit(value)
+	{
+		this.clickEdit = value;
+	}
+
 
 }

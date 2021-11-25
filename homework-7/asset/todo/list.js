@@ -67,30 +67,24 @@ export class List
 			})
 		}
 	}
+
 	handleEditButtonClick(item)
 	{
-		const index = this.items.indexOf(item);
-		if (index > -1)
-		{
-			this.items.splice(index, 1);
-			this.save().then(() => {
-				this.renderItems();
-			}).catch((error) => {
-				console.error('Error trying to delete item');
-			})
-		}
+		this.renderItems();
 	}
 	handleSaveButtonClick(item)
 	{
+
 		const index = this.items.indexOf(item);
 		if (index > -1)
 		{
-			this.items.splice(index, 1);
+
+
 			this.save().then(() => {
 				this.renderItems();
 			}).catch((error) => {
-				console.error('Error trying to delete item');
-			})
+				console.log('Error trying to save item' + error);
+			});
 		}
 	}
 
