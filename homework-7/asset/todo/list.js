@@ -70,21 +70,21 @@ export class List
 
 	handleEditButtonClick(item)
 	{
+		item.clickEdit = true;
 		this.renderItems();
 	}
 	handleSaveButtonClick(item)
 	{
-
 		const index = this.items.indexOf(item);
 		if (index > -1)
 		{
-
-
+			item.title = document.querySelectorAll(`input.${Item.nameClassInput}`)[0].value;
 			this.save().then(() => {
 				this.renderItems();
 			}).catch((error) => {
 				console.log('Error trying to save item' + error);
 			});
+			item.clickEdit = false;
 		}
 	}
 

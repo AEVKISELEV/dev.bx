@@ -5,6 +5,7 @@ export class Item
 	editButtonHandler;
 	saveButtonHandler;
 	clickEdit = false;
+	nameClassInput = 'input-edit';
 
 	constructor({title, deleteButtonHandler, editButtonHandler, saveButtonHandler})
 	{
@@ -37,7 +38,7 @@ export class Item
 		if(this.clickEdit)
 		{
 			title = document.createElement('input');
-			title.classList.add('item-title-input');
+			title.classList.add(Item.nameClassInput);
 			title.value = this.title;
 		}
 		else
@@ -57,12 +58,19 @@ export class Item
 		const saveButton = document.createElement('button');
 		saveButton.innerText = 'Save';
 
-		deleteButton.addEventListener('click', this.handleDeleteButtonClick.bind(this));
-		editButton.addEventListener('click', this.handleEditButtonClick.bind(this));
-		saveButton.addEventListener('click', this.handleSaveButtonClick.bind(this));
 
-		buttonsContainer.append(saveButton);
-		buttonsContainer.append(editButton);
+		if (this.clickEdit)
+		{
+			buttonsContainer.append(saveButton);
+			saveButton.addEventListener('click', this.handleSaveButtonClick.bind(this));
+		}
+		else
+		{
+			buttonsContainer.append(editButton);
+			editButton.addEventListener('click', this.handleEditButtonClick.bind(this));
+		}
+
+		deleteButton.addEventListener('click', this.handleDeleteButtonClick.bind(this));
 		buttonsContainer.append(deleteButton);
 
 		container.append(buttonsContainer);
@@ -79,7 +87,6 @@ export class Item
 	}
 	handleEditButtonClick()
 	{
-		this.clickEdit = true;
 		if (this.editButtonHandler)
 		{
 			this.editButtonHandler(this);
@@ -87,16 +94,10 @@ export class Item
 	}
 	handleSaveButtonClick()
 	{
-		this.clickEdit = false;
-		if (this.deleteSaveHandler)
+		if (this.saveButtonHandler)
 		{
-			this.deleteSaveHandler(this);
+			this.saveButtonHandler(this);
 		}
 	}
-	setIsEdit(value)
-	{
-		this.clickEdit = value;
-	}
-
 
 }
