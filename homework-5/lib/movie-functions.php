@@ -1,4 +1,5 @@
 <?php
+
 function convertToHoursMins(int $time, string $format = '%02d:%02d')
 {
 	if ($time < 1) {
@@ -8,6 +9,7 @@ function convertToHoursMins(int $time, string $format = '%02d:%02d')
 	$minutes = ($time % 60);
 	return sprintf($format, $hours, $minutes);
 }
+
 function formatTitle(string $title):string
 {
 	if(strlen($title)>45){

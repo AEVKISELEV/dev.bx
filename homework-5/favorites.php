@@ -9,9 +9,9 @@ require_once "./data/movies.php";
 require_once "./lib/template-functions.php";
 require_once "./lib/movie-functions.php";
 
-$MovieListPage = renderTemplate("./resources/pages/_error-block.php");
+$movieListPage = renderTemplate("./resources/pages/_error-block.php");
 
-renderLayout($MovieListPage, [
+renderLayout($movieListPage, [
 	'config' => $config,
 	'currentPage' => basename($_SERVER['REQUEST_URI']),
 	'genres' => $genres

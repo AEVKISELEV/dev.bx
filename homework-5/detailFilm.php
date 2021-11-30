@@ -8,13 +8,21 @@ require_once "./config/app.php";
 require_once "./data/movies.php";
 require_once "./lib/template-functions.php";
 require_once "./lib/movie-functions.php";
+$aboutGET =$_GET['about'];
+$movieNew = [];
+foreach($movies as $movie){
+	if (($_GET !== []) && isset($_GET['about']) && ((int)($_GET['about']) === $movie['id'])){
+		$movieNew=$movie;
+	}
+}
 
-$MovieListPage = renderTemplate("./resources/pages/_about-movie.php", [
-	'movies' => $movies,
+
+$movieListPage = renderTemplate("./resources/pages/_about-movie.php", [
+	'movieNew' => $movieNew,
 	'genres' => $genres
 ]);
 
-renderLayout($MovieListPage, [
+renderLayout($movieListPage, [
 	'config' => $config,
 	'currentPage' => basename($_SERVER['REQUEST_URI']),
 	'genres' => $genres
