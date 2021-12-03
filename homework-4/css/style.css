@@ -14,8 +14,9 @@
 }
 .wrapper header{
     display: block;
-    width: 25vw;
+    width: 27vw;
     background: #383838;
+	overflow-x: hidden;
 }
 .container{
     display: flex;

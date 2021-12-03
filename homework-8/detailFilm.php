@@ -14,7 +14,10 @@ $aboutGET =$_GET['about'];
 
 $dataBase = getDataBase();
 $genres = getGenres($dataBase);
-$movies = getMovieByID($dataBase,$aboutGET);
+if(isset($aboutGET))
+{
+	$movies = getMovieByID($dataBase,$aboutGET);
+}
 
 $movie = $movies[0];
 

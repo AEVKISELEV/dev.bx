@@ -1,6 +1,6 @@
 <?php
-// declare(strict_types=1);
-// error_reporting(-1);
+declare(strict_types=1);
+error_reporting(-1);
 /** @var array $config */
 /** @var array $genres */
 /** @var array $movies */
@@ -13,8 +13,16 @@ require_once "./lib/dataBase/data-base-functions.php";
 $dataBase = getDataBase();
 $genres = getGenres($dataBase);
 
-$genresGET = $_GET['genres'];
-$searchGET = $_GET['s'];
+$genresGET = null;
+$searchGET = null;
+if(isset($_GET['genres']))
+{
+	$genresGET = $_GET['genres'];
+}
+if(isset($_GET['s']))
+{
+	$searchGET = $_GET['s'];
+}
 
 $movies = getMovies($dataBase, $genres, $genresGET, $searchGET);
 

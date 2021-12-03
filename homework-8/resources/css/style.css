@@ -16,6 +16,7 @@
     display: block;
     width: 485px;
     background: #383838;
+	overflow-x: hidden;
 }
 .container{
     display: flex;

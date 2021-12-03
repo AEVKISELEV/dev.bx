@@ -75,6 +75,7 @@ function getMovies(mysqli $database, array $genres, string $nameGenre=null, stri
 
 function getMovieByID(mysqli $database, string $ID)
 {
+	$ID = mysqli_real_escape_string($database, $ID);
 	$query = "SELECT m.ID, m.TITLE, m.ORIGINAL_TITLE, m.DESCRIPTION,
        m.DURATION, m.AGE_RESTRICTION, m.RELEASE_DATE, m.RATING,d.NAME,
 	  (SELECT GROUP_CONCAT(mg.GENRE_ID) 
