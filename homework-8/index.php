@@ -19,14 +19,7 @@ $searchGET = $_GET['s'];
 $movies = getMovies($dataBase, $genres, $genresGET, $searchGET);
 
 
-
-
-
-
-
-
 $movieListPage = renderTemplate("./resources/pages/movie-home.php", [
-	// 'inSearch' => $inSearch,
 	'movies' => $movies
 ]);
 

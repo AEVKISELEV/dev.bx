@@ -11,9 +11,11 @@ require_once "./lib/dataBase/data-base-config.php";
 require_once "./lib/dataBase/data-base-functions.php";
 
 $aboutGET =$_GET['about'];
+
 $dataBase = getDataBase();
 $genres = getGenres($dataBase);
 $movies = getMovieByID($dataBase,$aboutGET);
+
 $movie = $movies[0];
 
 

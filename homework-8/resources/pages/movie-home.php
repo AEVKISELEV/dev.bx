@@ -8,8 +8,6 @@
 		<?= renderTemplate("./resources/blocks/_movie-card.php", ['movie' => $movie]) ?>
 	<?php endforeach; ?>
 
-
-
 </div>
 
 
