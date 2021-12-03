@@ -1,25 +1,25 @@
 <?php
-/** @var array $movieNew */
+/** @var array $movie */
 
 ?>
 <div class="wrapper_detailmovie">
 			<div class="about_film_card">
-				<div class="about-film-title"><?= $movieNew['title'] ?></div>
+				<div class="about-film-title"><?= $movie['TITLE'] ?></div>
 				<div class="wrapper-about-film-subtitle">
-					<div class="about-film-subtitle"><?= $movieNew['original-title'] ?></div>
-					<div class="age-subtitle"><?= $movieNew['age-restriction'] . "+" ?></div>
+					<div class="about-film-subtitle"><?= $movie['ORIGINAL_TITLE'] ?></div>
+					<div class="age-subtitle"><?= $movie['AGE_RESTRICTION'] . "+" ?></div>
 				</div>
 				<div class="about-film-hr"></div>
 				<div class="big-wrapper-about-film">
 					<div class="wrapper-img-about-film">
-						<img class="img-about-film" alt="movie" src="resources/img/<?= $movieNew['id'] ?>.jpg">
+						<img class="img-about-film" alt="movie" src="resources/img/<?= $movie['ID'] ?>.jpg">
 					</div>
 					<div class="wrapper-data-about-film">
 						<div class="wrapper-about-film-rating">
 							<?php for ($i = 1; $i <= 10; $i++): ?>
-								<?= movieRectangleRating($i, $movieNew['rating']) ?>
+								<?= movieRectangleRating($i, $movie['RATING']) ?>
 							<?php endfor; ?>
-							<div class="rating-ellipse"><?= sprintf('%0.1f', $movieNew['rating']) ?></div>
+							<div class="rating-ellipse"><?= sprintf('%0.1f', $movie['RATING']) ?></div>
 						</div>
 						<div class="about-film-small-descr-title">О фильме</div>
 						<div class="wrapper-about-film-small-descr">
@@ -29,19 +29,19 @@
 								<li class="about-film-small-descr-subtitle-name">В главных ролях:</li>
 							</ul>
 							<ul class="wrapper-about-film-small-description">
-								<li class="about-film-small-description-full"><?= $movieNew['release-date'] ?></li>
-								<li class="about-film-small-description-full"><?= $movieNew['director'] ?></li>
-								<li class="about-film-small-description-full"><?= implode(", ", $movieNew['cast']) ?></li>
+								<li class="about-film-small-description-full"><?= $movie['RELEASE_DATE'] ?></li>
+								<li class="about-film-small-description-full"><?= $movie['NAME'] ?></li>
+								<li class="about-film-small-description-full"><?= formatActors($movie['ACTORS']) ?></li>
 							</ul>
 						</div>
 						<div class="about-film-descr-title">Описание</div>
-						<div class="about-film-descr"><?= $movieNew['description'] ?></div>
+						<div class="about-film-descr"><?= $movie['DESCRIPTION'] ?></div>
 					</div>
 				</div>
 				<div class="about-film-heart" id="like">
 
 				</div>
-				<div class="notify" id="notify">"<?= $movieNew['title'] ?>" добавлен в избранное </div>
+				<div class="notify" id="notify">"<?= $movie['TITLE'] ?>" добавлен в избранное </div>
 			</div>
 
 </div>

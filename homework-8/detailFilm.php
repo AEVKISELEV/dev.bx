@@ -5,28 +5,20 @@ error_reporting(-1);
 /** @var array $genres */
 /** @var array $movies */
 require_once "./config/app.php";
-require_once "./data/movies.php";
 require_once "./lib/template-functions.php";
 require_once "./lib/movie-functions.php";
 require_once "./lib/dataBase/data-base-config.php";
 require_once "./lib/dataBase/data-base-functions.php";
 
-
+$aboutGET =$_GET['about'];
 $dataBase = getDataBase();
 $genres = getGenres($dataBase);
-
-$aboutGET =$_GET['about'];
-$movieNew = [];
-foreach($movies as $movie){
-	if (($_GET !== []) && isset($_GET['about']) && ((int)($_GET['about']) === $movie['id'])){
-		$movieNew=$movie;
-	}
-}
+$movies = getMovieByID($dataBase,$aboutGET);
+$movie = $movies[0];
 
 
 $movieListPage = renderTemplate("./resources/pages/_about-movie.php", [
-	'movieNew' => $movieNew,
-	'genres' => $genres
+	'movie' => $movie
 ]);
 
 renderLayout($movieListPage, [

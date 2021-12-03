@@ -58,3 +58,13 @@ function movieRectangleRating(int $i, float $rating):string
 		}
 	}
 }
+function formatActors(array $actors):string
+{
+	$arrayActors = [];
+	foreach ($actors as $actor)
+	{
+		$arrayActors[] = $actor['NAME'];
+	}
+
+	return implode(', ', $arrayActors);
+}

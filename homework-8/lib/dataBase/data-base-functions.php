@@ -73,6 +73,32 @@ function getMovies(mysqli $database, array $genres, string $nameGenre=null, stri
 
 }
 
+function getMovieByID(mysqli $database, string $ID)
+{
+	$query = "SELECT m.ID, m.TITLE, m.ORIGINAL_TITLE, m.DESCRIPTION,
+       m.DURATION, m.AGE_RESTRICTION, m.RELEASE_DATE, m.RATING,d.NAME,
+	  (SELECT GROUP_CONCAT(mg.GENRE_ID) 
+	  FROM movie_genre mg WHERE mg.MOVIE_ID = m.ID) as 'genres',
+	   (SELECT GROUP_CONCAT(ma.ACTOR_ID)
+	   FROM movie_actor ma WHERE ma.MOVIE_ID = m.ID) as 'ACTORS'
+		FROM movie m
+		INNER JOIN director d on m.DIRECTOR_ID = d.ID
+		WHERE m.ID LIKE '{$ID}'";
+
+	$result = mysqli_query($database, $query);
+
+	if (!$result)
+	{
+		trigger_error($database->error, E_USER_ERROR);
+	}
+	$arrayMovie = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	$arrayActor = getActor($database);
+
+
+	return getMoviesWithActor($arrayMovie,$arrayActor);
+}
+
+
 function getMovieWithGenres(array $movies, array $genres):array
 {
 	foreach ($movies as $index => $movie)
@@ -87,6 +113,36 @@ function getMovieWithGenres(array $movies, array $genres):array
 			}
 		}
 		$movies[$index]["genres"]=$newArrayGenres;
+	}
+	return $movies;
+}
+
+function getActor(mysqli $database):array
+{
+	$query = "SELECT ID, NAME FROM actor";
+	$result = mysqli_query($database, $query);
+
+	if (!$result)
+	{
+		trigger_error($database->error, E_USER_ERROR);
+	}
+	return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function getMoviesWithActor(array $movies, array $arrayActor):array
+{
+	foreach ($movies as $index => $movie)
+	{
+		$array= explode(',', $movie['ACTORS']);
+		$newArrayActors = [];
+		foreach ($arrayActor as $actor)
+		{
+			if(in_array($actor["ID"], $array))
+			{
+				$newArrayActors[]= $actor;
+			}
+		}
+		$movies[$index]['ACTORS']=$newArrayActors;
 	}
 	return $movies;
 }
