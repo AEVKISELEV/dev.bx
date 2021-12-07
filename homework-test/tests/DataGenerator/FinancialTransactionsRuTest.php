@@ -122,15 +122,6 @@ class FinancialTransactionsRuTest extends TestCase
 					'CorrespAcc' => '1',
 				]
 			],
-			'Valid Type object and don`t validate length Name' => [
-				[
-					'Name' => $this->$fields,
-					'PersonalAcc' => '1',
-					'BankName' => '1',
-					'BIC' => '01234567890',
-					'CorrespAcc' => '1',
-				]
-			],
 		];
 	}
 
@@ -139,12 +130,11 @@ class FinancialTransactionsRuTest extends TestCase
 	 *
 	 * @param array $fields
 	 */
-	public function testGetDataRight($fields): void
+	public function testGetDataRight(array $fields): void
 	{
 		$dataGenerator = new \App\DataGenerator\FinancialTransactionsRu();
 
 		$dataGenerator->setFields($fields);
-		echo
 
 		$data = $dataGenerator->getData();
 
