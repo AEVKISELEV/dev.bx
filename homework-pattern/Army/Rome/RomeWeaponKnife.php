@@ -2,7 +2,7 @@
 
 namespace Army\Rome;
 
-use Army\Weapon\Khife;
+use Army\Weapon\Knife;
 
 class RomeWeaponKnife extends Knife
 {

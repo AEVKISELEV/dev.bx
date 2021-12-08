@@ -10,10 +10,10 @@ class RomeWeapons extends AbstractWeapon
 {
 	public function createBow(): Bow
 	{
-		return new RomeBow();
+		return new RomeWeaponBow();
 	}
 	public function createKnife(): Knife
 	{
-		return new RomeKnife();
+		return new RomeWeaponKnife();
 	}
 }
