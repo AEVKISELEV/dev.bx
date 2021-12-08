@@ -3,6 +3,8 @@
 namespace Army\Builder;
 
 use Army\Armor\Armor;
+use Army\Armor\handArmor;
+use Army\Armor\headArmor;
 use Army\WarriorTemplate;
 use Army\Weapon\Bow;
 use Army\Weapon\Knife;
@@ -26,17 +28,19 @@ class ArcherBuilder implements WarriorBuilder
 
 	public function addRightHandArmor(?Armor $armor = null): WarriorBuilder
 	{
+		$this->warriorTemplate->set('rightHandArmor', $armor ?: new handArmor());
 		return $this;
 	}
 
 	public function addLeftHandArmor(?Armor $armor = null): WarriorBuilder
 	{
-		$this->warriorTemplate->set('leftHandArmor', $armor);
+		$this->warriorTemplate->set('leftHandArmor', $armor ?: new handArmor());
 		return $this;
 	}
 
 	public function addHeadArmor(?Armor $armor = null): WarriorBuilder
 	{
+		$this->warriorTemplate->set('headArmor', $armor ?: new headArmor());
 		return $this;
 	}
 
