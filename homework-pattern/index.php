@@ -56,7 +56,10 @@ $calculatePower = function ($sum, $warrior)
 //var_dump($barbarianFactory->createHorseman());
 
 $build = new \Army\Builder\ArcherBuilder();
+$build2 = new \Army\Builder\HorsemanBuilder();
 
 var_dump(\Army\Builder\Director::build($build));
+var_dump(\Army\Builder\Director::build($build2));
 
 $build->addLeftHandArmor()->getWarrior();
+$build2->addRightHandArmor()->getWarrior();
