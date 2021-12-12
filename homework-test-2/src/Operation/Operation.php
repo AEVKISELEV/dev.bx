@@ -53,6 +53,14 @@ class Operation
 				return $result->addErrors($beforeActionsResult->getErrors());
 			}
 		}
+		if ($this->settings->$isAfterActionsEnabled())
+		{
+			$afterActionsResult = $this->processActions(static::ACTION_BEFORE_SAVE);
+			if (!$afterActionsResult->isSuccess())
+			{
+				return $result->addErrors($afterActionsResult->getErrors());
+			}
+		}
 
 		$saveResult = $this->save();
 		if (!$saveResult->isSuccess())
