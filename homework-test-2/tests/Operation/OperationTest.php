@@ -6,28 +6,18 @@ class OperationTest extends TestCase
 {
 	protected function getOrderThatSavesSuccessfully()
 	{
-		$order = $this->getMockBuilder(\App\Order::class)
-			->onlyMethods(['save'])
-			->getMock()
-		;
+		$order = $this->getMockBuilder(\App\Order::class)->onlyMethods(['save'])->getMock();
 
-		$order->expects(static::once())
-			->method('save')
-			->willReturn(new \App\Result())
-		;
+		$order->expects(static::once())->method('save')->willReturn(new \App\Result());
 
 		return $order;
 	}
 
 	protected function getActionThatNeverInvoked()
 	{
-		$action = $this->getMockBuilder(\App\Operation\Action::class)
-			->onlyMethods(['process'])
-			->getMockForAbstractClass()
-		;
-		$action->expects(static::never())
-			->method('process')
-		;
+		$action = $this->getMockBuilder(\App\Operation\Action::class)->onlyMethods(['process'])
+					   ->getMockForAbstractClass();
+		$action->expects(static::never())->method('process');
 
 		return $action;
 	}
@@ -45,20 +35,14 @@ class OperationTest extends TestCase
 
 	public function testThatLaunchFailIfOrderSaveFail(): void
 	{
-		$order = $this->getMockBuilder(\App\Order::class)
-			->onlyMethods(['save'])
-			->getMock()
-		;
+		$order = $this->getMockBuilder(\App\Order::class)->onlyMethods(['save'])->getMock();
 
 		$errorCode = random_int(0, 999);
 
 		$result = new \App\Result();
 		$result->addError(new Error('Test message', $errorCode));
 
-		$order->expects(static::once())
-			->method('save')
-			->willReturn($result)
-		;
+		$order->expects(static::once())->method('save')->willReturn($result);
 
 		$operation = new App\Operation\Operation($order);
 
@@ -80,39 +64,30 @@ class OperationTest extends TestCase
 
 	public function testThatOrderSaveIsNotInvokedIfBeforeActionFail(): void
 	{
-		$order = $this->getMockBuilder(\App\Order::class)
-			->onlyMethods(['save'])
-			->getMock()
-		;
+		$order = $this->getMockBuilder(\App\Order::class)->onlyMethods(['save'])->getMock();
 
-		$order->expects(static::never())
-			->method('save')
-		;
+		$order->expects(static::never())->method('save');
 
 		$operation = new App\Operation\Operation($order);
 
-		$action = $this->getMockBuilder(\App\Operation\Action::class)
-			->onlyMethods(['process'])
-			->getMockForAbstractClass()
-		;
+		$action = $this->getMockBuilder(\App\Operation\Action::class)->onlyMethods(['process'])
+					   ->getMockForAbstractClass();
 		$errorMessage = 'Error during before action in test';
-		$action->expects(static::once())
-			->method('process')
-			->with($order)
-			->willReturn((new \App\Result())->addError(new Error($errorMessage)))
-		;
+		$action->expects(static::once())->method('process')->with($order)->willReturn(
+				(new \App\Result())->addError(new Error($errorMessage))
+			);
 
 		$operation->addAction(
 			\App\Operation\Operation::ACTION_BEFORE_SAVE,
 			$action
 		);
 
-//		$action = new class extends \App\Operation\Action {
-//			public function process(\App\Order $order): \App\Result
-//			{
-//				return (new \App\Result())->addError(new Error('Test error'));
-//			}
-//		};
+		//		$action = new class extends \App\Operation\Action {
+		//			public function process(\App\Order $order): \App\Result
+		//			{
+		//				return (new \App\Result())->addError(new Error('Test error'));
+		//			}
+		//		};
 
 		$afterAction = $this->getActionThatNeverInvoked();
 
@@ -144,10 +119,7 @@ class OperationTest extends TestCase
 	{
 		$settings = new App\Operation\Settings();
 
-		$order = $this->getMockBuilder(\App\Order::class)
-			->onlyMethods(['save'])
-			->getMock()
-		;
+		$order = $this->getMockBuilder(\App\Order::class)->onlyMethods(['save'])->getMock();
 
 		$operation = new App\Operation\Operation($order, $settings);
 
@@ -172,6 +144,7 @@ class OperationTest extends TestCase
 
 		static::assertTrue($result);
 	}
+
 	public function testThatOperationDoesNotInvokeAfterActionsIfTheyDisabledInSettings(): void
 	{
 		$settings = new App\Operation\Settings();
@@ -188,24 +161,31 @@ class OperationTest extends TestCase
 
 		$result = $operation->launch();
 
-		static::assertTrue($result);
+		static::assertTrue($result->isSuccess());
 	}
+
 	public function testThatOperationInvokeAfterActionsIfTheyEnableInSettings(): void
 	{
-		$settings = new App\Operation\Settings();
-
-		$settings->disableAfterSaveActions();
-
 		$order = $this->getOrderThatSavesSuccessfully();
 
-		$operation = new App\Operation\Operation($order, $settings);
+		$action = $this->getMockBuilder(\App\Operation\Action::class)->onlyMethods(['process'])
+					   ->getMockForAbstractClass();
+
+		$errorMessage = 'test error after';
+		$action->expects(static::once())->method('process')->with($order)->willReturn(
+				(new \App\Result())->addError(new Error($errorMessage))
+			);
+
+		$operation = new App\Operation\Operation($order);
 		$operation->addAction(
 			App\Operation\Operation::ACTION_AFTER_SAVE,
-			$this->getActionThatNeverInvoked()
+			$action
 		);
 
 		$result = $operation->launch();
 
-		static::assertTrue($result);
+		static::assertFalse($result->isSuccess());
+
+		static::assertEquals($errorMessage, $result->getErrorMessages()[0]);
 	}
 }
