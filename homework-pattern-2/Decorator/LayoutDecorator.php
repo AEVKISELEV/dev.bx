@@ -4,7 +4,7 @@ namespace Decorator;
 
 use Service\Formatting\HtmlTextFormatter;
 
-class layoutDecorator extends HtmlTextFormatter
+class LayoutDecorator extends HtmlTextFormatter
 {
 	public function format(string $text): string
 	{
@@ -12,10 +12,10 @@ class layoutDecorator extends HtmlTextFormatter
 	}
 	public function elementHeader():string
 	{
-		return '<h1>Внимание</h1>'.'\n';
+		return '<h1>Внимание</h1>';
 	}
 	public function elementFooter(): string
 	{
-		return '<h4>Ждём вас</h4>'.'\n';
+		return '<h4>Ждём вас</h4>';
 	}
 }

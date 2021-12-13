@@ -4,7 +4,8 @@ spl_autoload_register(function ($class) {
 	include __DIR__ . '/' . str_replace("\\", "/",  $class) . '.php';
 });
 
-
+$formatter = new \Decorator\LayoutDecorator();
+echo $formatter->format('привет');
 $advertisement = (new \Entity\Advertisement())
 	->setBody("test")
 	->setTitle("test")
@@ -15,3 +16,4 @@ $calculator->applyCost();
 
 $calculator = new \Decorator\VatCostDecorator($calculator);
 var_dump($calculator->applyCost()->getTotalCost());
+
