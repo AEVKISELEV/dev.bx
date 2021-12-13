@@ -53,14 +53,6 @@ class Operation
 				return $result->addErrors($beforeActionsResult->getErrors());
 			}
 		}
-		if ($this->settings->$isAfterActionsEnabled())
-		{
-			$afterActionsResult = $this->processActions(static::ACTION_BEFORE_SAVE);
-			if (!$afterActionsResult->isSuccess())
-			{
-				return $result->addErrors($afterActionsResult->getErrors());
-			}
-		}
 
 		$saveResult = $this->save();
 		if (!$saveResult->isSuccess())
@@ -68,11 +60,16 @@ class Operation
 			return $result->addErrors($saveResult->getErrors());
 		}
 
-		$afterActionsResult = $this->processActions(static::ACTION_AFTER_SAVE);
-		if (!$afterActionsResult->isSuccess())
+		if ($this->settings->isAfterActionsEnabled())
 		{
-			return $result->addErrors($afterActionsResult->getErrors());
+			$afterActionsResult = $this->processActions(static::ACTION_AFTER_SAVE);
+			if (!$afterActionsResult->isSuccess())
+			{
+				return $result->addErrors($afterActionsResult->getErrors());
+			}
 		}
+
+
 
 		return new Result();
 	}

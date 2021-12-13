@@ -141,8 +141,7 @@ class OperationTest extends TestCase
 		);
 
 		$result = $operation->launch();
-
-		static::assertTrue($result);
+		static::assertTrue($result->isSuccess());
 	}
 
 	public function testThatOperationDoesNotInvokeAfterActionsIfTheyDisabledInSettings(): void
